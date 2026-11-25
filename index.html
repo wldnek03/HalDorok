@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>도시락 햄찌 다운로드</title>
+<style>
+  html, body { height: 100%; }
+  body { margin: 0; }
+
+  :root {
+    --bg: #fff8ee;
+    --card: #ffffff;
+    --text: #3b2f25;
+    --muted: #8a7867;
+    --accent: #f29b38;
+    --accent-dark: #d9801f;
+    --border: #f0e2cf;
+    --disabled: #e9e2d8;
+    --notice-bg: #fff3df;
+    --notice-border: #f5d5a6;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #1f1a16;
+      --card: #2a241f;
+      --text: #f4ebe1;
+      --muted: #b3a596;
+      --border: #3a322b;
+      --disabled: #3a322b;
+      --notice-bg: #3a2c1c;
+      --notice-border: #5a4329;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #1f1a16;
+    --card: #2a241f;
+    --text: #f4ebe1;
+    --muted: #b3a596;
+    --border: #3a322b;
+    --disabled: #3a322b;
+    --notice-bg: #3a2c1c;
+    --notice-border: #5a4329;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-block: 40px;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  main { width: 100%; min-width: 0; max-width: 560px; text-align: center; }
+  .logo { width: 112px; height: 112px; border-radius: 28px; margin: 0 auto; display: grid; place-items: center;
+    font-size: 60px; background: var(--notice-bg); border: 1px solid var(--notice-border); }
+  h1 { font-size: 32px; margin: 16px 0 8px; }
+  .tagline { color: var(--muted); margin: 0 0 32px; line-height: 1.6; }
+  .version { display: inline-block; font-size: 13px; color: var(--muted);
+    border: 1px solid var(--border); border-radius: 999px; padding: 2px 10px; margin-bottom: 24px; }
+
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 20px;
+    padding: 24px; margin-bottom: 16px; text-align: left; }
+  .card h2 { margin: 0 0 4px; font-size: 18px; }
+  .card .sub { margin: 0 0 16px; font-size: 14px; color: var(--muted); }
+  .buttons { display: flex; gap: 10px; flex-wrap: wrap; }
+
+  .btn { flex: 1 1 200px; display: flex; flex-direction: column; align-items: center;
+    padding: 14px 16px; border-radius: 14px; text-decoration: none; font-weight: 600;
+    background: var(--accent); color: #fff; transition: background .15s, transform .15s; }
+  .btn:hover { background: var(--accent-dark); transform: translateY(-1px); }
+  .btn small { font-weight: 400; font-size: 12px; opacity: .9; margin-top: 2px; }
+  .btn.disabled { background: var(--disabled); color: var(--muted); pointer-events: none; }
+  .btn.recommended { box-shadow: 0 0 0 3px rgba(242,155,56,.35); }
+
+  .notice { margin-top: 20px; padding: 14px 16px; border-radius: 14px;
+    background: var(--notice-bg); border: 1px solid var(--notice-border);
+    font-size: 14px; line-height: 1.65; }
+  .notice p { margin: 0; }
+  .notice .notice-title { font-weight: 700; margin-bottom: 6px; font-size: 15px; }
+
+  .steps-title { font-size: 15px; margin: 20px 0 8px; }
+  .steps { margin: 0; padding-left: 22px; font-size: 14px; line-height: 1.7; }
+  .steps li { margin-bottom: 12px; }
+  .steps li::marker { color: var(--accent); font-weight: 700; }
+
+  code { font-family: ui-monospace, Menlo, monospace; font-size: 12.5px;
+    background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 1px 5px; }
+  pre { margin: 8px 0 0; overflow-x: auto; }
+  pre code { display: block; padding: 10px 12px; white-space: pre; }
+
+  details { font-size: 14px; color: var(--muted); margin-top: 10px; line-height: 1.65; }
+  summary { cursor: pointer; font-weight: 600; }
+  details ul { padding-left: 20px; margin: 8px 0 0; }
+  details p { margin: 8px 0 0; }
+  .mobile-note { background: var(--notice-bg); border: 1px solid var(--notice-border);
+    border-radius: 14px; padding: 12px 14px; font-size: 14px; line-height: 1.6; margin: 0 0 20px; }
+  .hint { margin: 0 0 16px; font-size: 13px; line-height: 1.6; color: var(--muted); }
+  .hint b { color: var(--text); }
+  footer { margin-top: 24px; font-size: 13px; color: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+  <div class="logo" role="img" aria-label="도시락 햄찌">🐹</div>
+  <h1>도시락 햄찌</h1>
+  <p class="tagline">화면을 돌아다니며 도시락·점심 메뉴를 추천해주는<br>햄스터 데스크톱 펫</p>
+  <span class="version">Windows v0.3.2 · Mac v0.3.0</span>
+  <p class="mobile-note" id="mobile-note" hidden>💻 데스크톱 펫이라 <b>컴퓨터(Windows/Mac)</b>에서 받아야 해요!<br>컴퓨터에서 이 페이지를 다시 열어주세요.</p>
+
+  <p class="hint">버튼을 누르면 구글 드라이브 창이 떠요. 파일이 커서 뜨는 안내예요.<br><b>「무시하고 다운로드」</b>를 누르면 바로 시작돼요.</p>
+
+  <!-- macOS -->
+  <section class="card">
+    <h2> macOS</h2>
+    <p class="sub">내 Mac 칩 확인: 왼쪽 위  메뉴 → 이 Mac에 관하여</p>
+    <div class="buttons">
+      <a class="btn" id="mac-arm" href="#" target="_blank" rel="noopener">
+        Apple 칩 (M1~M4)
+        <small>.dmg · 116MB</small>
+      </a>
+      <a class="btn" id="mac-intel" href="#" target="_blank" rel="noopener">
+        Intel 칩
+        <small>.dmg · 121MB</small>
+      </a>
+    </div>
+  </section>
+
+  <!-- Windows -->
+  <section class="card">
+    <h2>🪟 Windows</h2>
+    <p class="sub">Windows 10 / 11</p>
+    <div class="buttons">
+      <a class="btn" id="win" href="#" target="_blank" rel="noopener">
+        Windows용 다운로드
+        <small>압축 파일 (.zip)</small>
+      </a>
+    </div>
+
+    <h3 class="steps-title">설치하고 여는 방법</h3>
+    <ol class="steps">
+      <li>
+        <b>zip 파일 압축 풀기</b><br>
+        다운로드한 <code>.zip</code> 파일을 우클릭 → <b>모두 압축 풀기</b>를 눌러요.
+      </li>
+      <li>
+        <b>폴더 안의 앱 실행하기</b><br>
+        압축을 푼 폴더 안의 <b>도시락 햄찌 앱(.exe)</b>을 더블클릭하면 햄찌가 나타나요 🐹
+      </li>
+    </ol>
+    <details>
+      <summary>파란 경고창이 뜨면</summary>
+      <p>"Windows의 PC 보호" 창이 뜨면 <b>추가 정보 → 실행</b>을 눌러요. 개발자 인증이 없는 앱에 Windows가 똑같이 띄우는 안내예요.</p>
+    </details>
+  </section>
+
+  <footer>© 도시락 햄찌</footer>
+</main>
+<script>
+  var LINKS = {
+    'mac-arm':   'https://drive.usercontent.google.com/download?id=1qP1qPqrDzf3GUIH5BKCk6WCwTNRzh4w2&export=download&confirm=t',
+    'mac-intel': 'https://drive.usercontent.google.com/download?id=1BS9AoQPrsuPuEVyOgrZkd_b3RZai8M-Y&export=download&confirm=t',
+    'win':       'https://drive.usercontent.google.com/download?id=1p8jlaU1KMzPFJ1aKsBPv11NLFiqZybh0&export=download&confirm=t'
+  };
+  Object.keys(LINKS).forEach(function (id) { document.getElementById(id).href = LINKS[id]; });
+
+  // 접속한 기기에 맞는 카드를 위로 / 휴대폰이면 안내 문구
+  (function () {
+    var ua = navigator.userAgent;
+    var main = document.querySelector('main');
+    var cards = document.querySelectorAll('.card');
+    if (/Android|iPhone|iPad|iPod/i.test(ua)) {
+      document.getElementById('mobile-note').hidden = false;
+    } else if (/Windows/i.test(ua)) {
+      main.insertBefore(cards[1], cards[0]);
+      document.getElementById('win').classList.add('recommended');
+    }
+  })();
+</script>
+</body>
+</html>
